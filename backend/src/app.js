@@ -4,6 +4,7 @@ const cors = require('cors')
 require('dotenv').config()
 
 const entryRoutes = require('./routes/entryRoutes')
+const commitRoutes = require('./routes/commitRoutes')
 
 const app = express()
 
@@ -19,6 +20,7 @@ app.get('/health', (req, res) => {
 })
 
 app.use('/entries', entryRoutes)
+app.use('/commits', commitRoutes)
 
 const PORT = process.env.PORT || 3333
 app.listen(PORT, () => {
