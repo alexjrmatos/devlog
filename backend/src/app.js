@@ -3,6 +3,8 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 require('dotenv').config()
 
+const entryRoutes = require('./routes/entryRoutes')
+
 const app = express()
 
 app.use(cors())
@@ -15,6 +17,8 @@ mongoose.connect(process.env.MONGODB_URI)
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'DevLog API rodando' })
 })
+
+app.use('/entries', entryRoutes)
 
 const PORT = process.env.PORT || 3333
 app.listen(PORT, () => {
