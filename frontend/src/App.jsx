@@ -1,15 +1,30 @@
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
 import Home from './pages/Home'
+import NewEntry from './pages/NewEntry'
 
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <header>
-        <h1>DevLog</h1>
+        <a href="/" className="logo">
+          <span>&gt;_</span> DevLog
+        </a>
+        <nav>
+          <NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}>
+            Entradas
+          </NavLink>
+          <NavLink to="/nova" className={({ isActive }) => isActive ? 'active' : ''}>
+            Nova Entrada
+          </NavLink>
+        </nav>
       </header>
       <main>
-        <Home />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/nova" element={<NewEntry />} />
+        </Routes>
       </main>
-    </div>
+    </BrowserRouter>
   )
 }
 
